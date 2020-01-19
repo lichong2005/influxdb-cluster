@@ -1,0 +1,4 @@
+influxdb-cluster
+
+1.简介：
+基于influxdb0.11的集群版，优化了一些功能点。
