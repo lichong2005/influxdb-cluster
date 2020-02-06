@@ -57,7 +57,10 @@ influxdb-cluster是基于influxdb1.7.x版本以及分布式Raft协议开发的�
 ## Getting Started
 
 # 界面
-<img src="./docs/admin_web.png" width=900 height=500 />
+
+浏览器打开：http://localhost:8083 即可
+
+<img src="./docs/admin_web.jpg" width=900 height=500 />
 
 # 命令行操作
 
