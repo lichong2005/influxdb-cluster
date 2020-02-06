@@ -6,21 +6,14 @@ influxdb-cluster是基于influxdb1.7.x版本以及分布式Raft协议开发的�
 
 ## Features
 
-- 完全兼容influxdb的influxql协议
+- influxdb基于1.7.x版本，功能上都兼容
 
-- 高可用
+- 元数据节点和数据节点都可水平线性扩展 
 
-- 水平线性扩展
+- 元数据节点强一致性，数据节点最终一致性  
 
-- 最终一致性
-
-- MPP架构：大规模并行处理
-
-- 不依赖第三方服务
-
-## 架构图
-<img src="./docs/architecture.png" width=360 height=360 />
-
+## Architecture
+<img src="./docs/architecture.jpgg" width=360 height=360 />
 
 - meta server：负责元数据的存储和管理
 
