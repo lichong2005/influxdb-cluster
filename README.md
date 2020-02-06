@@ -18,7 +18,7 @@ influxdb-cluster是基于influxdb1.7.x版本以及分布式Raft协议开发的�
 
 - 不依赖第三方服务
 
-## Architecture
+## 架构图
 <img src="./docs/architecture.png" width=360 height=360 />
 
 
@@ -55,6 +55,11 @@ influxdb-cluster是基于influxdb1.7.x版本以及分布式Raft协议开发的�
 - ./influxd -config influxd.conf
 
 ## Getting Started
+
+#界面
+<img src="./docs/admin_web.png" width=900 height=500 />
+
+#命令行操作
 
 创建第一个数据库
 - curl -XPOST "http://localhost:8086/query" --data-urlencode "q=CREATE DATABASE mydb"

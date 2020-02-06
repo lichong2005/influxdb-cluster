@@ -27,6 +27,7 @@ require (
 	github.com/openzipkin/zipkin-go v0.1.3 // indirect
 	github.com/pkg/errors v0.8.1
 	github.com/pkg/profile v1.2.1 // indirect
+	github.com/rakyll/statik v0.1.6
 	github.com/spf13/cobra v0.0.3
 	github.com/xlab/treeprint v0.0.0-20181112141820-a009c3971eca // indirect
 	go.opencensus.io v0.22.2 // indirect

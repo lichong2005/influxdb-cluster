@@ -3,6 +3,7 @@ package run
 import (
 	"crypto/tls"
 	"fmt"
+	"github.com/influxdb-cluster/services/admin"
 	"io"
 	"log"
 	"net"
@@ -346,6 +347,15 @@ func (s *Server) appendRetentionPolicyService(c retention.Config) {
 	s.Services = append(s.Services, srv)
 }
 
+func (s *Server) appendAdminService(c admin.Config) {
+	if !c.Enabled {
+		return
+	}
+	c.Version = s.buildInfo.Version
+	srv := admin.NewService(c)
+	s.Services = append(s.Services, srv)
+}
+
 func (s *Server) appendHTTPDService(c httpd.Config) {
 	if !c.Enabled {
 		return
@@ -484,6 +494,7 @@ func (s *Server) Open() error {
 	s.appendClusterService(s.config.Coordinator)
 	s.appendSnapshotterService()
 	s.appendContinuousQueryService(s.config.ContinuousQuery)
+	s.appendAdminService(s.config.Admin)
 	s.appendHTTPDService(s.config.HTTPD)
 	s.appendRetentionPolicyService(s.config.Retention)
 	s.appendControllerService(s.config.Controller)

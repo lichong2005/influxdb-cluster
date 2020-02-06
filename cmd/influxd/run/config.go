@@ -2,6 +2,7 @@ package run
 
 import (
 	"fmt"
+	"github.com/influxdb-cluster/services/admin"
 	"io/ioutil"
 	"log"
 	"os"
@@ -50,6 +51,7 @@ type Config struct {
 
 	Monitor        monitor.Config    `toml:"monitor"`
 	Subscriber     subscriber.Config `toml:"subscriber"`
+	Admin          admin.Config      `toml:"admin"`
 	HTTPD          httpd.Config      `toml:"http"`
 	Logging        logger.Config     `toml:"logging"`
 	GraphiteInputs []graphite.Config `toml:"graphite"`
