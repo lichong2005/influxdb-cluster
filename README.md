@@ -13,7 +13,7 @@ influxdb-cluster是基于influxdb1.7.x版本以及分布式Raft协议开发的�
 - 元数据节点强一致性，数据节点最终一致性  
 
 ## Architecture
-<img src="./docs/architecture.jpgg" width=360 height=360 />
+<img src="./docs/architecture.jpg" width=583.5 height=400 />
 
 - meta server：负责元数据的存储和管理
 
