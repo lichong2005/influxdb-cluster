@@ -54,6 +54,16 @@ func (me *ClusterMetaClient) ClusterID() uint64 {
 	return me.cache.ClusterID()
 }
 
+func (me *ClusterMetaClient) Data() (*imeta.Data) {
+	data, err := me.metaCli.Data()
+	if err != nil {
+		fmt.Println("get data fail ", err)
+		return nil
+	}
+	fmt.Println("get data done")
+	return data
+}
+
 func (me *ClusterMetaClient) syncData() error {
 	fmt.Println("start sync data")
 	data, err := me.metaCli.Data()

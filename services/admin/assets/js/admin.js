@@ -481,6 +481,17 @@ $(document).ready(function () {
         });
 
     });
+   // load cluster Info
+    $("button#action-get-cluster").click(function (e) {
+        var query = $.get(connectionString() + "/cluster");
+        query.fail(handleRequestError);
+        query.done(function (data, status, xhr) {
+            var jsonPretty = JSON.stringify(data,null,2);
+            // showModalSuccess(jsonPretty);
+            $("div#content-cluster-info").html("<p>" + jsonPretty + "</p>").show();
+            console.log(data)
+        });
+    });
 
     // handle submit actions on the query bar
     var form = document.getElementById('query-form');

@@ -4,6 +4,7 @@ import (
 	"crypto/tls"
 	"fmt"
 	"github.com/influxdb-cluster/services/admin"
+	"github.com/influxdb-cluster/services/httpd"
 	"io"
 	"log"
 	"net"
@@ -15,7 +16,7 @@ import (
 
 	"github.com/influxdata/influxdb"
 	influxdb_coordinator "github.com/influxdata/influxdb/coordinator"
-	"github.com/influxdata/influxdb/flux/control"
+	//"github.com/influxdata/influxdb/flux/control"
 	"github.com/influxdata/influxdb/logger"
 	"github.com/influxdata/influxdb/models"
 	"github.com/influxdata/influxdb/monitor"
@@ -23,7 +24,6 @@ import (
 	"github.com/influxdata/influxdb/services/collectd"
 	"github.com/influxdata/influxdb/services/continuous_querier"
 	"github.com/influxdata/influxdb/services/graphite"
-	"github.com/influxdata/influxdb/services/httpd"
 	"github.com/influxdata/influxdb/services/opentsdb"
 	"github.com/influxdata/influxdb/services/precreator"
 	"github.com/influxdata/influxdb/services/retention"
@@ -33,7 +33,7 @@ import (
 	"github.com/influxdata/influxdb/services/udp"
 	"github.com/influxdata/influxdb/tcp"
 	"github.com/influxdata/influxdb/tsdb"
-	"github.com/influxdata/platform/storage/reads"
+	//"github.com/influxdata/platform/storage/reads"
 	client "github.com/influxdata/usage-client/v1"
 	"go.uber.org/zap"
 
@@ -372,7 +372,7 @@ func (s *Server) appendHTTPDService(c httpd.Config) {
 	srv.Handler.BuildType = "OSS"
 	ss := storage.NewStore(s.TSDBStore, s.ClusterMetaClient)
 	srv.Handler.Store = ss
-	srv.Handler.Controller = control.NewController(s.ClusterMetaClient, reads.NewReader(ss), authorizer, c.AuthEnabled, s.Logger)
+	//srv.Handler.Controller = control.NewController(s.ClusterMetaClient, reads.NewReader(ss), authorizer, c.AuthEnabled, s.Logger)
 
 	s.Services = append(s.Services, srv)
 }

@@ -27,9 +27,9 @@ influxdb-cluster是基于influxdb1.7.x版本以及分布式Raft协议开发的�
 
 - cd workspace/src/github.com/influxdb-cluster
 
-- git clone https://github.com/lichong2005/influxdb-cluster.git && cd influxdb-cluster
+- git clone git@github.com:lichong2005/influxdb-cluster.git && cd influxdb-cluster
 
-- 编译influxd： cd cmd/influxd && go build && cd -
+- 编译influxd： cd cmd/influxd && go build  
 
 - 编译metad：cd cmd/metad && go build
 

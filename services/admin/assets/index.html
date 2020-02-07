@@ -33,8 +33,13 @@
                         <li>
                             <a href="#" data-toggle="modal" data-target="#myModal">Write Data</a>
                         </li>
+
                         <li>
-                            <a href="https://docs.influxdata.com/influxdb/v0.10/introduction/getting_started" target="_blank">Documentation</a>
+                            <a href="#" data-toggle="modal" data-target="#myCluster">Cluster</a>
+                        </li>
+
+                        <li>
+                            <a href="https://docs.influxdata.com/influxdb/v1.7/introduction/getting_started" target="_blank">Documentation</a>
                         </li>
                     </ul>
 
@@ -192,6 +197,26 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="modal fade" id="myCluster" tabindex="-1" role="dialog" aria-labelledby="myClusterLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myClusterLabel">Cluster Info</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-success" role="alert" id="content-cluster-info"></div>
+                    <div class="alert alert-danger" role="alert" id="modal-error"></div>
+                    <div class="alert alert-success" role="alert" id="modal-success"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="action-get-cluster">Get Cluster Info</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="js/vendor/react-0.13.3.min.js"></script>

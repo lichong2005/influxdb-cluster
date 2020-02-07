@@ -3,6 +3,7 @@ package run
 import (
 	"fmt"
 	"github.com/influxdb-cluster/services/admin"
+	"github.com/influxdb-cluster/services/httpd"
 	"io/ioutil"
 	"log"
 	"os"
@@ -19,7 +20,6 @@ import (
 	"github.com/influxdata/influxdb/services/collectd"
 	"github.com/influxdata/influxdb/services/continuous_querier"
 	"github.com/influxdata/influxdb/services/graphite"
-	"github.com/influxdata/influxdb/services/httpd"
 	"github.com/influxdata/influxdb/services/meta"
 	"github.com/influxdata/influxdb/services/opentsdb"
 	"github.com/influxdata/influxdb/services/precreator"
