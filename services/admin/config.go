@@ -11,14 +11,16 @@ type Config struct {
 	BindAddress      string `toml:"bind-address"`
 	HTTPSEnabled     bool   `toml:"https-enabled"`
 	HTTPSCertificate string `toml:"https-certificate"`
-	Version          string
+	Version          string `toml:"version"`
 }
 
 // NewConfig returns an instance of Config with defaults.
 func NewConfig() Config {
 	return Config{
+		Enabled:          true,
 		BindAddress:      DefaultBindAddress,
 		HTTPSEnabled:     false,
 		HTTPSCertificate: "/etc/ssl/influxdb.pem",
+		Version:          "cluster-v1.0.0",
 	}
 }

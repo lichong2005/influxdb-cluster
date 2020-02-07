@@ -2,7 +2,7 @@
 
 # influxdb-cluster
 
-influxdb-cluster是基于influxdb1.7.x版本以及分布式Raft协议开发的分布式时序数据库，兼容官方的influxql。
+influxdb-cluster是基于influxdb1.7.x版本以及分布式Raft协议开发的分布式时序数据库，具有influxdb本身的特性之外，还有容量扩展、副本容错等集群功能。
 
 ## Features
 

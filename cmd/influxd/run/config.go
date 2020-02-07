@@ -83,6 +83,7 @@ func NewConfig() *Config {
 
 	c.Monitor = monitor.NewConfig()
 	c.Subscriber = subscriber.NewConfig()
+	c.Admin = admin.NewConfig()
 	c.HTTPD = httpd.NewConfig()
 	c.Logging = logger.NewConfig()
 
