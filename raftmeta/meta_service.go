@@ -1362,8 +1362,11 @@ func (s *MetaService) Data(w http.ResponseWriter, r *http.Request) {
 		resp.RetMsg = err.Error()
 		return
 	}
-
 	data := s.cli.Data()
+	var peers = s.Node.Transport.ClonePeers()
+	for key,value:= range peers{
+		data.MetaNodes = append(data.MetaNodes,meta.NodeInfo{ID:key,Host:value,TCPHost:value})
+	}
 	resp.Data, err = data.MarshalBinary()
 	if err != nil {
 		resp.RetMsg = err.Error()

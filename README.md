@@ -4,7 +4,7 @@
 
 influxdb-cluster是基于influxdb1.7.x版本以及分布式Raft协议开发的分布式时序数据库，具有influxdb本身的特性之外，还有容量扩展、副本容错等集群功能。
 
-Fork from angopher/chronus
+Forked from angopher/chronus
 
 ## Features
 
@@ -55,7 +55,7 @@ Fork from angopher/chronus
 
 浏览器打开：http://localhost:8083 即可
 
-<img src="./docs/admin_web.jpg" width=900 height=500 />
+<img src="./docs/admin_web.png" width=900 height=500 />
 
 # 命令行操作
 

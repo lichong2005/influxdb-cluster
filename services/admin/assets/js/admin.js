@@ -518,11 +518,10 @@ $(document).ready(function () {
 var Cluster = React.createClass({
     render: function() {
         return React.createElement("div", null, React.createElement("h1", null, "Cluster ID : " + this.props.ClusterID),
-            React.createElement(MetaNode, this.props.MetaNodes),
+            React.createElement(MetaNode, this.props),
             React.createElement(DataNode, this.props));
     }
 });
-
 
 
 var MetaNode = React.createClass({
@@ -530,7 +529,8 @@ var MetaNode = React.createClass({
         return  React.createElement("div", null,
             React.createElement("h1", null, "Meta Node"),
             React.createElement("table", {className: "table"},
-                React.createElement(DataNodeHeader, {data: ["ID","Host","Alive"]})
+                React.createElement(DataNodeHeader, {data: ["ID","Host","TCPHost","Alive"]}),
+                React.createElement(DataNodeBody, {data:this.props.MetaNodes})
             ));
     }
 });
