@@ -482,14 +482,19 @@ $(document).ready(function () {
 
     });
    // load cluster Info
-    $("button#action-get-cluster").click(function (e) {
+    $("#action-get-cluster").click(function (e) {
         var query = $.get(connectionString() + "/cluster");
         query.fail(handleRequestError);
-        query.done(function (data, status, xhr) {
-            var jsonPretty = JSON.stringify(data,null,2);
-            // showModalSuccess(jsonPretty);
-            $("div#content-cluster-info").html("<p>" + jsonPretty + "</p>").show();
+        query.done(function (data) {
+            // var jsonPretty = JSON.stringify(data,null,2);
+            // $("div#content-cluster-info").html("<p>" + jsonPretty + "</p>").show();
             console.log(data)
+            clearResults();
+            React.render(
+                React.createElement(Cluster, data),
+                document.getElementById('table')
+            );
+
         });
     });
 
@@ -503,4 +508,68 @@ $(document).ready(function () {
 
     // make sure we start out with the query bar in focus
     document.getElementById('query').focus();
+
+    // React.render(
+    //     React.createElement(Cluster, {"Term":0,"Index":18,"ClusterID":0,"Databases":[{"Name":"_internal","DefaultRetentionPolicy":"monitor","RetentionPolicies":[{"Name":"monitor","ReplicaN":1,"Duration":604800000000000,"ShardGroupDuration":86400000000000,"ShardGroups":[{"ID":1,"StartTime":"2020-02-05T00:00:00Z","EndTime":"2020-02-06T00:00:00Z","DeletedAt":"0001-01-01T00:00:00Z","Shards":[{"ID":1,"Owners":[{"NodeID":1}]}],"TruncatedAt":"0001-01-01T00:00:00Z"},{"ID":3,"StartTime":"2020-02-06T00:00:00Z","EndTime":"2020-02-07T00:00:00Z","DeletedAt":"0001-01-01T00:00:00Z","Shards":[{"ID":5,"Owners":[{"NodeID":2}]},{"ID":6,"Owners":[{"NodeID":3}]},{"ID":7,"Owners":[{"NodeID":4}]},{"ID":8,"Owners":[{"NodeID":1}]}],"TruncatedAt":"0001-01-01T00:00:00Z"},{"ID":4,"StartTime":"2020-02-07T00:00:00Z","EndTime":"2020-02-08T00:00:00Z","DeletedAt":"0001-01-01T00:00:00Z","Shards":[{"ID":9,"Owners":[{"NodeID":3}]},{"ID":10,"Owners":[{"NodeID":4}]},{"ID":11,"Owners":[{"NodeID":1}]},{"ID":12,"Owners":[{"NodeID":2}]}],"TruncatedAt":"0001-01-01T00:00:00Z"}],"Subscriptions":null}],"ContinuousQueries":null},{"Name":"test1","DefaultRetentionPolicy":"newrp","RetentionPolicies":[{"Name":"autogen","ReplicaN":1,"Duration":0,"ShardGroupDuration":604800000000000,"ShardGroups":[{"ID":6,"StartTime":"2020-02-03T00:00:00Z","EndTime":"2020-02-10T00:00:00Z","DeletedAt":"0001-01-01T00:00:00Z","Shards":[{"ID":17,"Owners":[{"NodeID":1}]},{"ID":18,"Owners":[{"NodeID":2}]},{"ID":19,"Owners":[{"NodeID":3}]},{"ID":20,"Owners":[{"NodeID":4}]}],"TruncatedAt":"0001-01-01T00:00:00Z"}],"Subscriptions":null},{"Name":"newrp","ReplicaN":2,"Duration":172800000000000,"ShardGroupDuration":86400000000000,"ShardGroups":null,"Subscriptions":null}],"ContinuousQueries":null}],"Users":[],"MaxShardGroupID":6,"MaxShardID":20,"MetaNodes":[],"DataNodes":[{"ID":1,"Host":":8086","TCPHost":"10.20.20.106:8088"},{"ID":2,"Host":"10.20.20.42:8086","TCPHost":"10.20.20.42:8088"},{"ID":3,"Host":"10.20.20.41:8086","TCPHost":"10.20.20.41:8088"},{"ID":4,"Host":"10.20.20.25:8086","TCPHost":"10.20.20.25:8088"}],"MaxNodeID":4}),
+    //     document.getElementById('table')
+    // );
 })
+
+var Cluster = React.createClass({
+    render: function() {
+        return React.createElement("div", null, React.createElement("h1", null, "Cluster ID : " + this.props.ClusterID),
+            React.createElement(MetaNode, this.props.MetaNodes),
+            React.createElement(DataNode, this.props));
+    }
+});
+
+
+
+var MetaNode = React.createClass({
+    render: function() {
+        return  React.createElement("div", null,
+            React.createElement("h1", null, "Meta Node"),
+            React.createElement("table", {className: "table"},
+                React.createElement(DataNodeHeader, {data: ["ID","Host","Alive"]})
+            ));
+    }
+});
+
+var DataNode = React.createClass({
+    render: function() {
+        return React.createElement("div", null,
+            React.createElement("h1", null, "Data Node"),
+            React.createElement("table", {className: "table"},
+                React.createElement(DataNodeHeader, {data: ["ID","Host","TCPHost","Alive"]}),
+                React.createElement(DataNodeBody, {data:this.props.DataNodes})
+            ));
+    }
+});
+
+var DataNodeHeader = React.createClass({
+    render: function() {
+        var headers = this.props.data.map(function(column) {
+            return React.createElement("th", null, column);
+        });
+        return React.createElement("tr", null, headers);
+    }
+});
+
+var DataNodeBody = React.createClass({
+    render: function() {
+        var tableRows = this.props.data.map(function (row) {
+            return React.createElement(DataNodeRow, {data: [row.ID,row.Host,row.TCPHost,"1"]});
+        });
+        return React.createElement("tbody", null, tableRows);
+    }
+});
+
+var DataNodeRow = React.createClass({
+    render: function() {
+        var tableData = this.props.data.map(function (data) {
+            return React.createElement("td", null, pretty(data));
+        });
+        return React.createElement("tr", null, tableData);
+    }
+});
+

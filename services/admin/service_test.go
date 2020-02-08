@@ -4,6 +4,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"testing"
+	"time"
 
 	"github.com/influxdb-cluster/services/admin"
 )
@@ -11,10 +12,11 @@ import (
 // Ensure service can serve the root index page of the admin.
 func TestService_Index(t *testing.T) {
 	// Start service on random port.
-	s := admin.NewService(admin.Config{BindAddress: "127.0.0.1:0"})
+	s := admin.NewService(admin.Config{BindAddress: "127.0.0.1:8787"})
 	if err := s.Open(); err != nil {
 		t.Fatal(err)
 	}
+	time.Sleep(time.Duration(30)*time.Second)
 	defer s.Close()
 
 	// Request root index page.

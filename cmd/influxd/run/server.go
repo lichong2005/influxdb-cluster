@@ -209,7 +209,7 @@ func NewServer(c *Config, buildInfo *BuildInfo) (*Server, error) {
 
 	wait := s.ClusterMetaClient.WaitForDataChanged()
 	go s.ClusterMetaClient.RunSyncLoop()
-	//wait sync meta data from meta server
+	//wait sync meta data from meta server    2005：what is this
 	select {
 	case <-time.After(5 * time.Second):
 		//TODO:
